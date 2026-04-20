@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindSyncKW Carousel Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>MindSyncKW Carousel Generator</h1>
+            <p>Create professional carousels for your WhatsApp business</p>
+        </header>
+
+        <div class="generator-section">
+            <div class="template-selector">
+                <h2>Select Template</h2>
+                <select id="template-select">
+                    <option value="problem-solution">Problem-Solution</option>
+                    <option value="before-after">Before/After</option>
+                    <option value="behind-scenes">Behind the Scenes</option>
+                    <option value="faq">FAQ</option>
+                    <option value="tips">Tips & Tricks</option>
+                </select>
+            </div>
+
+            <div class="content-form">
+                <h2>Content</h2>
+                <div class="form-group">
+                    <label for="slide1">Slide 1 Content:</label>
+                    <textarea id="slide1" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="slide2">Slide 2 Content:</label>
+                    <textarea id="slide2" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="slide3">Slide 3 Content:</label>
+                    <textarea id="slide3" rows="4"></textarea>
+                </div>
+                <button id="generate-btn">Generate Carousel</button>
+            </div>
+
+            <div class="output-section">
+                <h2>Generated Carousel</h2>
+                <div id="carousel-output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+/* MindSyncKW Carousel Generator Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.generator-section {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.template-selector {
+    margin-bottom: 30px;
+}
+
+.template-selector h2 {
+    margin-bottom: 15px;
+    color: #667eea;
+}
+
+.template-selector select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: white;
+}
+
+.content-form {
+    margin-bottom: 30px;
+}
+
+.content-form h2 {
+    margin-bottom: 20px;
+    color: #764ba2;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+#generate-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.output-section {
+    margin-top: 30px;
+}
+
+.output-section h2 {
+    margin-bottom: 20px;
+    color: #667eea;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-slide {
+    scroll-snap-align: start;
+    min-width: 300px;
+    max-width: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-content h2 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.slide-content p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.slide-image {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.slide-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .generator-section {
+        padding: 20px;
+    }
+    
+    .carousel-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .carousel-slide {
+        width: 100%;
+        min-width: auto;
+    }
+}
+
+// MindSyncKW Carousel Generator Script
+document.addEventListener('DOMContentLoaded', function() {
+    const generateBtn = document.getElementById('generate-btn');
+    const carouselOutput = document.getElementById('carousel-output');
+    const templateSelect = document.getElementById('template-select');
+    
+    // Template data
+    const templates = {
+        'problem-solution': {
+            name: 'Problem-Solution',
+            slides: [
+                {
+                    title: 'الاعتراض الشائع',
+                    content: 'الذكاء الاصطناعي بارد... ما راح يفهم طبيعة عملي',
+                    note: 'خطأ شائع يكلفك آلاف الدينارات سنويًا'
+                },
+                {
+                    title: 'الحل',
+                    content: 'نفس اليوم... مع الوكيل الذكي',
+                    note: 'رد تلقائي على 8 رسائل في 30 ثانية'
+                },
+                {
+                    title: 'الفوائد',
+                    content: 'حجز 4 مواعيد تلقائيًا',
+                    note: 'تذكير الأمسية بالمواعيد الغد ← صفر غياب'
+                }
+            ]
+        },
+        'before-after': {
+            name: 'Before/After',
+            slides: [
+                {
+                    title: 'قبل',
+                    content: '8 رسائل واتساب غير مقروءة',
+                    note: 'سكرتيرة مشغولة'
+                },
+                {
+                    title: 'بعد',
+                    content: 'رد تلقائي على 8 رسائل',
+                    note: 'حجز 4 مواعيد تلقائيًا'
+                },
+                {
+                    title: 'الفوائد',
+                    content: 'تذكير الأمسية بالمواعيد الغد',
+                    note: 'صفر غياب'
+                }
+            ]
+        },
+        'behind-scenes': {
+            name: 'Behind the Scenes',
+            slides: [
+                {
+                    title: ' behind the scenes',
+                    content: 'كيف نعمل',
+                    note: 'عملية متكاملة'
+                },
+                {
+                    title: 'العمل',
+                    content: 'الاستراتيجية',
+                    note: 'التنفيذ'
+                },
+                {
+                    title: 'النتيجة',
+                    content: 'التحسين',
+                    note: 'التطوير'
+                }
+            ]
+        },
+        'faq': {
+            name: 'FAQ',
+            slides: [
+                {
+                    title: 'الأسئلة الشائعة',
+                    content: 'كيف يمكنني البدء؟',
+                    note: 'سهل وسريع'
+                },
+                {
+                    title: 'الإجابة',
+                    content: 'ابدأ الآن',
+                    note: 'خطوات بسيطة'
+                },
+                {
+                    title: 'الدعم',
+                    content: 'المساعدة المتاحة',
+                    note: 'فريق مخصص'
+                }
+            ]
+        },
+        'tips': {
+            name: 'Tips & Tricks',
+            slides: [
+                {
+                    title: 'نصائح',
+                    content: 'كيف تحسن من أداءك',
+                    note: 'نصائح عملية'
+                },
+                {
+                    title: 'التطبيق',
+                    content: 'تطبيق النصائح',
+                    note: 'نتائج فورية'
+                },
+                {
+                    title: 'التطوير',
+                    content: 'التحسين المستمر',
+                    note: 'تطوير مستمر'
+                }
+            ]
+        }
+    };
+    
+    // Generate carousel function
+    function generateCarousel() {
+        const selectedTemplate = templateSelect.value;
+        const template = templates[selectedTemplate];
+        
+        if (!template) {
+            return;
+        }
+        
+        let carouselHTML = '<div class="carousel-container">';
+        
+        template.slides.forEach((slide, index) => {
+            carouselHTML += `
+                <div class="carousel-slide">
+                    <div class="slide-content">
+                        <h2>${slide.title}</h2>
+                        <p>${slide.content}</p>
+                        <p>${slide.note}</p>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://via.placeholder.com/200x150?text=Slide+${index+1}" alt="Slide ${index+1}">
+                    </div>
+                </div>
+            `;
+        });
+        
+        carouselHTML += '</div>';
+        carouselOutput.innerHTML = carouselHTML;
+    }
+    
+    // Event listeners
+    generateBtn.addEventListener('click', generateCarousel);
+    
+    // Initialize with first template
+    generateCarousel();
+});
